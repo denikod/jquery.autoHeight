@@ -1,5 +1,5 @@
 /*
- * 	auto Height 1.0 - jQuery plugin
+ * 	auto Height 1.1 - jQuery plugin
  *	developed by Denik (Oleg Denisenko)
  *	http://denik.od.ua/
  */
@@ -9,7 +9,9 @@
 	
 		var o = jQuery.extend({
 			item: '',
-			cols: ''
+			cols: '',
+			plusNested: '',
+			debug: false
 		}, o);
 
 		return this.each(function(index){
@@ -19,6 +21,9 @@
 
 			// Define variable
 			cont.data('data', {});
+
+			// Debug?
+			if( cont.data('debug') ) o.debug = true;
 
 			// Detect target
 			if( cont.data('item')!=undefined ) item = cont.data('item');
@@ -33,6 +38,12 @@
 			var item = cont.find(item);
 			if( ! item.length ) return;
 
+			// Child items that need to be added to the height
+			if( o.plusNested=='' && cont.data('plusnested')!=undefined )
+			{
+				o.plusNested = cont.data('plusnested');
+			}
+			
 			AutoHeight(cont, item);
 
 			cont.bind("DOMSubtreeModified",function(){
@@ -68,7 +79,7 @@
 			else if( o.cols!='' ) cols = o.cols;
 			else cols = Math.floor(cont.innerWidth()/item.outerWidth());
 
-			console.log('cols: '+ cols);
+			if( o.debug ) console.log('cols: '+ cols);
 
 			for(i=0; i<= item.length; i+=cols)
 			{
@@ -80,8 +91,14 @@
 
 		function MaxHeight(items)
 		{
-			return Math.max.apply(null,items.map(function(){return $(this).height()}));
+			return Math.max.apply(null,items.map(function(){
+				var height = $(this).height();
+				if( o.plusNested!='' ) $(this).find(o.plusNested).each(function(){height+=$(this).height()});
+				return height;
+			}));
 		}
 	}
-	$("[data-autoHeight]").autoHeight();
+	$(document).ready(function(){
+		$("[data-autoHeight]").autoHeight();
+	});
 })(jQuery);
