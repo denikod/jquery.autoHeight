@@ -12,7 +12,8 @@
 			cols: '',
 			plusNested: '',
 			debug: false
-		}, o);
+		}, o),
+		ah_containerIndex = 0;
 
 		return this.each(function(index){
 			var cont = $(this),
@@ -79,14 +80,74 @@
 			else if( o.cols!='' ) cols = o.cols;
 			else cols = Math.floor(cont.innerWidth()/item.outerWidth());
 
-			if( o.debug ) console.log('cols: '+ cols);
-
-			for(i=0; i<= item.length; i+=cols)
+			// Track container index
+			if( cont.data('containerIndex') == undefined )
 			{
-				var max = 0;
-
-				item.slice(i,i+cols).height( MaxHeight(item.slice(i,i+cols)) );
+				cont.data('containerIndex', ah_containerIndex++);
 			}
+
+			var contIndex = cont.data('containerIndex');
+
+			if( o.debug ) {
+				console.log('Container:', cont);
+				console.log('cols: '+ cols);
+			}
+
+			var rowIndex = -1;
+			for(var i=0; i<=item.length; i+=cols)
+			{
+				rowIndex++;
+				var slice = item.slice(i, i+cols);
+				var imgs = slice.find('img[src][src!=""]');
+				var imagesTotal  = imgs.length,
+					imagesLoaded = 0;
+
+				if( imagesTotal )
+				{
+					if( o.debug ) console.log("C:"+contIndex+",R:"+rowIndex+": found "+imagesTotal+" image(s)");
+
+					// WaitForImages
+					waitForImages(imgs, function(){
+						if( o.debug ) console.log("C:"+contIndex+",R:"+rowIndex+": All images loaded", this);
+						slice.height( MaxHeight(slice) );
+					});
+				}
+				else
+				{
+					if( o.debug ) console.log("C:"+contIndex+",R:"+rowIndex+": NOT found images");
+					slice.height( MaxHeight(slice) );
+				}
+			}
+		}
+
+		/**
+		 * Wait for load all images
+		 * @param  {object}   imgs     jQuery images array ([img, img...])
+		 * @param  {Function} callback
+		 * @return {void}
+		 */
+		function waitForImages(imgs, callback)
+		{
+			var imagesLoaded = 0,
+				imagesTotal  = imgs.length;
+
+			var CheckDone = function(){
+				if( imagesLoaded >= imagesTotal )
+				{
+					if( typeof(callback) == 'function' ) callback();
+				}
+			}
+
+			imgs.one("load", function(){
+				imagesLoaded++;
+				CheckDone();
+			}).each(function(){
+				// fix for cached images
+				if( this.complete ){
+					imagesLoaded++;
+					CheckDone();
+				}
+			});
 		}
 
 		function MaxHeight(items)
