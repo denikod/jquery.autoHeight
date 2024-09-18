@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jQuery autoHeight Example</title>
+
+	<style>
+		* {margin: 0; padding: 0; box-sizing: border-box;}
+		.products:after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden
+		}
+		
+		.products .entry {
+			padding: 14px 16px 110px;
+			width: 50%;
+			float: left;
+			border-top: 1px solid #d0d0d0;
+			border-right: 1px solid #d0d0d0;
+			text-align: center;
+			position: relative
+		}
+
+		.products .entry img {width: 100%; height: auto;}
+		
+		.products .entry .bottom {
+			position: absolute;
+			bottom: 0px;
+			left: 0;
+			width: 100%;
+			min-height: 85px;
+			border-top: 2px dashed #FF0000;
+			padding-top: 10px;
+		}
+		
+		.products .entry:nth-child(2n) {
+			border-right: none;
+			border-left: 1px solid #d0d0d0;
+			margin-left: -1px
+		}
+		
+		.products .entry:nth-child(2n+1) {
+			clear: left
+		}
+		
+		.products .entry .title {
+			font-size: 1.2em;
+			padding-bottom: .3em;
+			color: #22637f
+		}
+		
+		.products .entry .price {
+			font-size: 1.8em;
+			color: #677479;
+			padding: .2em 0
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="./jquery.autoHeight.min.js"></script>
+	<script>
+		$(function(){
+			setTimeout(function(){
+
+				$(".products .entry:nth-child(3) .title")
+					.after('<img width="200px" height="200px" src="https://picsum.photos/200?random=123">');
+
+			}, 5000);
+		});
+	</script>
+</head>
+<body>
+
+	<h1>jQuery autoHeight Example</h1>
+	<div class="products" data-autoheight>
+		<div class="entry">
+			<div class="title">Bamboo Toothbrush</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>March 12, 2024</div>
+				<div class="price ">$4.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Wireless Noise-Cancelling Bluetooth Headphones</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>July 18, 2023</div>
+				<div class="price ">$129.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Men's Organic Cotton T-Shirt</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>August 5, 2022</div>
+				<div class="price ">$24.50</div>
+			</div>
+		</div>
+
+		<div class="entry">
+			<div class="title">Ergonomic Office Chair with Lumbar Support and Breathable Mesh Design</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>September 5, 2023</div>
+				<div class="price ">$199.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Luxury RFID Leather Wallet</div>
+			<img width="200px" height="200px" src="https://picsum.photos/200?random=1">
+			<div class="bottom">
+				<div class="desc">Release Date:<br>October 2, 2023</div>
+				<div class="price ">$59.99</div>
+			</div>
+		</div>
+
+		<div class="entry">
+			<div class="title">High-Performance Gaming Laptop with Intel i9, 32GB RAM & NVIDIA RTX 3080</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>May 19, 2024</div>
+				<div class="price ">$2,499.00</div>
+			</div>
+		</div>
+
+		<div class="entry">
+			<div class="title">Smart Light Bulbs – Voice-Controlled & Energy-Efficient (Pack of 4)</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>October 10, 2023</div>
+				<div class="price ">$44.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Portable Solar Charger</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>June 10, 2024</div>
+				<div class="price ">$39.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Lavender Soy Candle</div>
+			<img width="200px" height="200px" src="https://picsum.photos/200?random=2">
+			<div class="bottom">
+				<div class="desc">Release Date:<br>April 22, 2023</div>
+				<div class="price ">$15.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Slim Waterproof Laptop Sleeve Case</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>September 14, 2023</div>
+				<div class="price ">$18.50</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Insulated Water Bottle – Hot or Cold</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>May 3, 2022</div>
+				<div class="price ">$22.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Standing Desk Converter</div>
+			<img width="200px" height="200px" src="https://picsum.photos/200?random=3">
+			<div class="bottom">
+				<div class="desc">Release Date:<br>November 29, 2023</div>
+				<div class="price ">$179.00</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Smartwatch with Fitness Tracker & Heart Rate Monitor</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>February 10, 2024</div>
+				<div class="price ">$99.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Ergonomic Mesh Office Chair with Lumbar Support</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>September 5, 2023</div>
+				<div class="price ">$199.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">4K Home Projector with Built-In Speakers</div>
+			<img width="200px" height="200px" src="https://picsum.photos/200?random=4">
+			<div class="bottom">
+				<div class="desc">Release Date:<br>December 15, 2022</div>
+				<div class="price ">$349.00</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Non-Stick Cookware Set – Includes Pans & Saucepan</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>January 9, 2024</div>
+				<div class="price ">$89.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Heavy-Duty Waterproof 4-Person Camping Tent</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>June 28, 2023</div>
+				<div class="price ">$129.00</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Self-Cleaning Robot Vacuum Cleaner with Alexa</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>April 17, 2024</div>
+				<div class="price ">$399.00</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Automatic Pet Feeder with Portion Control</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>March 30, 2022</div>
+				<div class="price ">$79.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Foldable Travel Hair Dryer – Dual Voltage</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>July 7, 2023</div>
+				<div class="price ">$34.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Reusable Grocery Bags (Set of 6)</div>
+			<img width="200px" height="200px" src="https://picsum.photos/200?random=5">
+			<div class="bottom">
+				<div class="desc">Release Date:<br>February 25, 2024</div>
+				<div class="price ">$12.99</div>
+			</div>
+		</div>
+
+		<div class="entry">
+			<div class="title">Eco-Friendly Bamboo Toothbrush</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>March 12, 2024</div>
+				<div class="price ">$4.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Wireless Noise-Cancelling Bluetooth Headphones</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>July 18, 2023</div>
+				<div class="price ">$129.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Premium Organic Cotton T-Shirt for Men</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>August 5, 2022</div>
+				<div class="price ">$24.50</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Luxury Leather Wallet with RFID Protection</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>October 2, 2023</div>
+				<div class="price ">$59.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Portable Solar Charger with Fast Charging Technology</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>June 10, 2024</div>
+				<div class="price ">$39.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">All-Natural Lavender Scented Soy Candle, Handmade</div>
+			<img width="200px" height="200px" src="https://picsum.photos/seed/picsum/200?random=6">
+			<div class="bottom">
+				<div class="desc">Release Date:<br>April 22, 2023</div>
+				<div class="price ">$15.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Ultra Slim Laptop Sleeve Case with Waterproof Protection</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>September 14, 2023</div>
+				<div class="price ">$18.50</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Stainless Steel Insulated Water Bottle – Keeps Drinks Hot or Cold</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>May 3, 2022</div>
+				<div class="price ">$22.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Adjustable Standing Desk Converter for Home or Office Use</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>November 29, 2023</div>
+				<div class="price ">$179.00</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Multifunctional Smartwatch with Fitness Tracker and Heart Rate Monitor</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>February 10, 2024</div>
+				<div class="price ">$99.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">High-Definition Home Projector with 4K Resolution and Built-In Speakers</div>
+			<img width="200px" height="200px" src="https://picsum.photos/seed/web/200">
+			<div class="bottom">
+				<div class="desc">Release Date:<br>December 15, 2022</div>
+				<div class="price ">$349.00</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Non-Stick Ceramic Cookware Set, Includes Frying Pans, Saucepan & More</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>January 9, 2024</div>
+				<div class="price ">$89.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Heavy-Duty Waterproof Camping Tent for 4 People with Easy Setup Instructions</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>June 28, 2023</div>
+				<div class="price ">$129.00</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Self-Cleaning Robot Vacuum Cleaner with Wi-Fi Connectivity and Alexa Integration</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>April 17, 2024</div>
+				<div class="price ">$399.00</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Pet-Friendly Automatic Feeder with Portion Control for Cats and Dogs</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>March 30, 2022</div>
+				<div class="price ">$79.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Compact Travel Hair Dryer with Dual Voltage for International Use and Foldable Handle</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>July 7, 2023</div>
+				<div class="price ">$34.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Eco-Friendly Reusable Grocery Bags, Made from Recycled Materials, Set of 6</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>February 25, 2024</div>
+				<div class="price ">$12.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">Bluetooth-Compatible Smart Light Bulbs, Voice-Controlled and Energy-Efficient, Pack of 4</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>October 10, 2023</div>
+				<div class="price ">$44.99</div>
+			</div>
+		</div>
+		
+		<div class="entry">
+			<div class="title">High-Performance Gaming Laptop with Intel Core i9 Processor, 32GB RAM, and NVIDIA RTX 3080 Graphics</div>
+			<div class="bottom">
+				<div class="desc">Release Date:<br>May 19, 2024</div>
+				<div class="price ">$2,499.00</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
