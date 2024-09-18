@@ -1,5 +1,5 @@
 /*
- * 	auto Height 1.1 - jQuery plugin
+ * 	auto Height 1.2 - jQuery plugin
  *	developed by Denik (Oleg Denisenko)
  *	http://denik.od.ua/
  */
@@ -46,9 +46,21 @@
 			
 			AutoHeight(cont, item);
 
-			cont.bind("DOMSubtreeModified",function(){
-				updateHeight(cont, item);
-			});
+			// if content has changet
+			if (typeof(MutationObserver) !== undefined) {
+
+				// Create an observer instance linked to the callback function
+				const observer = new MutationObserver(function(mutationList, observer){
+					updateHeight(cont, item);
+				});
+
+				// Start observing the target node for configured mutations
+				observer.observe(cont.get(0), {attributes: false, childList: true, subtree: true});
+			} else {
+				cont.bind("DOMSubtreeModified",function(){
+					updateHeight(cont, item);
+				});
+			}
 
 			// Update dom by resize
 			$(window).resize(function(){
